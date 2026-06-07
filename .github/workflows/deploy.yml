@@ -10,18 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check Secrets
-        run: |
-          echo "Host exists: ${{ secrets.EC2_HOST != '' }}"
-          echo "User exists: ${{ secrets.EC2_USER != '' }}"
-          echo "Key exists: ${{ secrets.EC2_SSH_KEY != '' }}"
-
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.2.0
+
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
+
           script: |
             cd ~/laravel-product-api
             git pull origin main
