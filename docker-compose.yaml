@@ -12,9 +12,6 @@ services:
     volumes:
       - ./:/var/www
 
-    depends_on:
-      - postgres
-
   nginx:
     image: nginx:latest
 
@@ -29,24 +26,3 @@ services:
 
     depends_on:
       - app
-
-  postgres:
-    image: postgres:16
-
-    container_name: laravel_postgres
-
-    restart: always
-
-    environment:
-      POSTGRES_DB: laravel_db
-      POSTGRES_USER: laravel
-      POSTGRES_PASSWORD: secret
-
-    ports:
-      - "5432:5432"
-
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
