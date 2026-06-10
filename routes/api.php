@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ImageController;
 
 use App\Http\Controllers\AuthController;
 
@@ -12,6 +13,7 @@ Route::get('/version', function () {
     return 'v2';
 });
 
+Route::post('/upload-image', [ImageController::class, 'upload']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
